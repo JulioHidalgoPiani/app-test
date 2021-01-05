@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app-test';
+
+  public id;
+  constructor( public _router: Router, public _route: ActivatedRoute) {
+    //  this.toastr.setRootViewContainerRef(vRef);
+
+      this._router.navigate(['principal']);
+    
+  }
+  ngOnInit() {
+
+  }
 }
