@@ -2,6 +2,7 @@
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ModuleModule } from './../module/module.module';
 import { PrincipalRoutingModule } from './principal-routing.module';
 import { PrincipalComponent } from './principal/principal.component';
@@ -12,7 +13,8 @@ import { PrincipalComponent } from './principal/principal.component';
   imports: [
     ModuleModule,
     PrincipalRoutingModule,
-    CommonModule
+    CommonModule,
+    FormsModule,     
   ],
   declarations: [PrincipalComponent],
   entryComponents:[]

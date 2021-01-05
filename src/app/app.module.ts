@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CoreModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    FormsModule,
+    
   ],
+  exports: [MaterialModule],
   providers: [],
   bootstrap: [AppComponent]
 })

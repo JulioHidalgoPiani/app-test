@@ -9,15 +9,10 @@ import { catchError } from 'rxjs/operators';
 
 import { Configuration } from '../../shared/configuration/app.constants';
 import { BaseService } from '../../shared/services/base.service';
-import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class MenuPrincipalService extends BaseService {
-  private urlFarmacia: string;
   private urlGit: string;
-  private _loading$ = new BehaviorSubject<boolean>(true);
-  private _search$ = new Subject<void>();
-  private _total$ = new BehaviorSubject<number>(0);
 
   constructor(
     public _httpClient: HttpClient,
@@ -43,12 +38,20 @@ export class MenuPrincipalService extends BaseService {
     return throwError('Something bad happened; please try again later.');
   }
 
+/**
+ * @author Julio Hidalgo Piani
+ * @description Servicio que obtiene el historial de commits de un respositorio de github en especifico
+ * @param - No recibe parametros
+ */
   public commitsHistory() {
     const options = {
       headers: this.obtenerHeaders(),
     };
     return this._httpClient
-      .get(this.urlGit + 'repos/renzorosaz/hackatondona2/commits', options)
+      .get(this.urlGit + 'repos/JulioHidalgoPiani/app-test/commits', options)
       .pipe(catchError(this.handleError));
   }
+
+
+
 }
