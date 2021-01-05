@@ -1,0 +1,28 @@
+.mat-table>.mat-header-row {
+    background-color: #72A9EC ;
+    min-height: 33px ;
+    padding: 0 10px ;
+    box-shadow: 0px 0px 3px 3px darkgrey;
+}
+
+
+.flex5 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+}
+
+.mat-card-title,
+mat-panel-title {
+    color: #2E86DE;
+}
+
+.material-icons {
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+.coVerde {
+    color: #16dc1c9e;
+}
