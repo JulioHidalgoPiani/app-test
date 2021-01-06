@@ -25,38 +25,24 @@ export class LoginContentComponent implements OnInit {
     });
   }
 
+  /**
+   * @description Servicio deprecated
+   */
   public iniciarSession() {
-    // let p = btoa(this.Param.username + this.Param.password);
-    // this.Param.username = btoa(this.Param.username);
-    // this.Param.password = btoa(this.Param.password);
-    console.log("hol");
-    this._router.navigate(['principal']);
-    // this._loginService.inicioSesionGithub(this.Param).subscribe((data: any) => {
-    //   if (data.message == 'Bad credentials') {
-    //     // this.toastr.error("wrong Credentials")
-    //     this._router.navigate(['principal']);
-    //   } else {
-    //     // this.toastr.success("Logueado");
-    //     console.log(data);
-    //     this._router.navigate(['principal']);
-    //   }
-    // });
+    let p = btoa(this.Param.username + this.Param.password);
+    this.Param.username = btoa(this.Param.username);
+    this.Param.password = btoa(this.Param.password);
+    this._loginService.inicioSesionGithub(this.Param).subscribe((data: any) => {
+      if (data.message == 'Bad credentials') {
+        // this.toastr.error("wrong Credentials")
+        this._router.navigate(['principal']);
+      } else {
+        // this.toastr.success("Logueado");
+        console.log(data);
+        this._router.navigate(['principal']);
+      }
+    });
   }
 
-  // public getInicioSesion() {
-  //   this._loginService.inicioSesionAPI(this.Param).subscribe((data: any) => {
-  //     if (data.estado == 1) {
-  //       this.confirmacionID = data.confirmacionID;
-  //       if (this.confirmacionID.idResult == 0) {
-  //         this.toastr.error(data.confirmacionID.mensaje, '', {
-  //           timeOut: 3000,
-  //         });
-  //       }
-  //     } else {
-  //       this.toastr.error('data.confirmacionID.mensaje', '', {
-  //         timeOut: 3000,
-  //       });
-  //     }
-  //   });
-  // }
+
 }

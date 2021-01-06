@@ -1,4 +1,4 @@
-
+<h1 class="text-center">TAKE HOME TEST</h1>
 <div class="container">
     <mat-card>
         <mat-card-header>
@@ -7,39 +7,43 @@
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                <ng-container matColumnDef="id">
-                    <mat-header-cell *matHeaderCellDef class="flex2" > N° </mat-header-cell>
-                    <mat-cell *matCellDef="let element" class="flex2"> {{element.index}} </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="mensaje">
-                    <mat-header-cell *matHeaderCellDef class="flex2"> Mensaje </mat-header-cell>
-                    <mat-cell *matCellDef="let element" class="flex2"> {{element.commit.message}} </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="persona">
-                    <mat-header-cell *matHeaderCellDef class="flex2"> Persona </mat-header-cell>
-                    <mat-cell *matCellDef="let element" class="flex2"> {{element.commit.committer.name}} </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="email">
-                    <mat-header-cell *matHeaderCellDef class="flex2"> Email </mat-header-cell>
-                    <mat-cell *matCellDef="let element" class="flex2"> {{element.commit.committer.email}} </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="fecha">
-                    <mat-header-cell *matHeaderCellDef class="flex2" > Fecha - Hora </mat-header-cell>
-                    <mat-cell *matCellDef="let element" class="flex2"> {{element.commit.committer.date}} </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="detalle">
-                    <mat-header-cell *matHeaderCellDef class="flex2"> Detalle </mat-header-cell>
-                    <mat-cell *matCellDef="let element" class="flex2">
-                    <button mat-button (click)="visualizarDetalle(element.index)" class="example-tooltip-host"
-                        matTooltip="Detalle" [matTooltipPosition]="'above'">
-                        <i class="material-icons coVerde">remove_red_eye</i>
-                    </button>
-                    </mat-cell>
-                </ng-container>
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
+            <div class="example-table-container; mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" >
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef>N°</th>
+                        <td mat-cell *matCellDef="let element"> {{element.index}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="mensaje">
+                        <th mat-header-cell *matHeaderCellDef> Mensaje </th>
+                        <td mat-cell *matCellDef="let element"> {{element.commit.message}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="persona">
+                        <th mat-header-cell *matHeaderCellDef> Persona </th>
+                        <td mat-cell *matCellDef="let element"> <img class="adjust" src={{imagen}}
+                                (click)="visualizarPerfil(element.index)" matTooltip="Ver perfil"
+                                [matTooltipPosition]="'above'"> {{element.commit.committer.name}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef> Email </th>
+                        <td mat-cell *matCellDef="let element"> {{element.commit.committer.email}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="fecha">
+                        <th mat-header-cell *matHeaderCellDef> Fecha - Hora </th>
+                        <td mat-cell *matCellDef="let element"> {{element.commit.committer.date}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="detalle">
+                        <th mat-header-cell *matHeaderCellDef class="flex5"> Detalle </th>
+                        <td mat-cell *matCellDef="let element" class="flex5">
+                            <button mat-button (click)="visualizarDetalle(element.index)"
+                                matTooltip="Visualizar detalle de cambios" [matTooltipPosition]="'above'">
+                                <i class="material-icons coVerde">remove_red_eye</i>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
             <!-- PAGINADOR -->
             <mat-paginator [pageSizeOptions]="displayedSize" showFirstLastButtons></mat-paginator>
         </mat-card-content>

@@ -6,13 +6,11 @@ import {
 } from '@angular/common/http';
 import { Configuration } from './../../shared/configuration/app.constants';
 import { BaseService } from './../../shared/services/base.service';
-import { ThrowStmt } from '@angular/compiler';
 import { catchError, map } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class LoginService extends BaseService {
-  public urlFarmacia: string;
   public urlGit: string;
 
   constructor(
@@ -20,7 +18,6 @@ export class LoginService extends BaseService {
     public _configuration: Configuration
   ) {
     super();
-    this.urlFarmacia = this._configuration.Server_local;
     this.urlGit = this._configuration.Server_git;
   }
 
@@ -40,10 +37,7 @@ export class LoginService extends BaseService {
     return throwError('Something bad happened; please try again later.');
   }
 
-   public inicioSesionGithub(Params) {
-
-
-  
+  public inicioSesionGithub(Params) {
     let queryParams: URLSearchParams = new URLSearchParams();
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/vnd.github.v3+json');
@@ -69,40 +63,13 @@ export class LoginService extends BaseService {
       headers: headers,
       search: queryParams,
     };
-    return  this._httpClient 
+    return this._httpClient
       .get(this.urlGit + 'user', {
         headers: {
-          'Authorization': 'Basic ' + auth, "Accept" : "application/vnd.github.v3+json",
+          Authorization: 'Basic ' + auth,
+          Accept: 'application/vnd.github.v3+json',
         },
       })
       .pipe(catchError(this.handleError));
   }
-
-  // public inicioSesionAPI(Params) {
-  //   let queryParams: URLSearchParams = new URLSearchParams();
-
-  //   if (Params.email) {
-  //     queryParams.append('email', Params.email);
-  //     console.log('service', Params.email);
-  //   }
-  //   if (Params.email) {
-  //     queryParams.append('contrasena', Params.contrasena);
-  //     console.log('service', Params.contrasena);
-  //   }
-
-  //   const options = {
-  //     headers: this.obtenerHeaders(),
-  //     search: queryParams,
-  //   };
-  //   return this._httpClient
-  //     .get(
-  //       this.urlFarmacia +
-  //         'Persona/iniciarSesion?contrasena=' +
-  //         Params.contrasena +
-  //         '&email=' +
-  //         Params.email,
-  //       options
-  //     )
-  //     .pipe(catchError(this.handleError));
-  // }
 }
